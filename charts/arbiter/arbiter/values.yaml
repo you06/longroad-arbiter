@@ -1,0 +1,15 @@
+arbiter:
+  image: hub.pingcap.net/longroad/arbiter:7acad5c5
+  # image: hub.pingcap.net/cosven/arbiter:3.0.1
+
+  config:
+    # upstream config
+    kafkaAddr: "{namespace}-kafka:9092"
+    kafkaVersion: "2.0.1"
+    topic: "{topic}"
+
+    # downstream config
+    dbhost: "{namespace}-targetdb-tidb"
+    dbport: 4000
+    dbuser: root
+    dbpassword: ""
