@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: drainer
-        image: {{ .Values.binlog.drainerKafka.image }}
+        image: {{ .Values.binlog.drainerKafka.baseImage }}:{{ .Values.binlog.drainerKafka.clusterVersion }}
         imagePullPolicy: {{ .Values.binlog.drainerKafka.imagePullPolicy | default "IfNotPresent" }}
         command:
         - /bin/sh
@@ -47,6 +47,11 @@ spec:
           mountPath: /data
         - name: config
           mountPath: /etc/drainer
+      {{- if and (ne .Values.timezone "UTC") (ne .Values.timezone "") }}
+        env:
+        - name: TZ
+          value: {{ .Values.timezone | default "UTC" }}
+      {{- end }}
       volumes:
       - name: config
         configMap:

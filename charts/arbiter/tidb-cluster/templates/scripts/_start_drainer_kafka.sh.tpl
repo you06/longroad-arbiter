@@ -30,4 +30,4 @@ done
 -config=/etc/drainer/drainer.toml \
 -disable-detect={{ .Values.binlog.drainerKafka.disableDetect | default false }} \
 -initial-commit-ts={{ .Values.binlog.drainerKafka.initialCommitTs | default 0 }} \
--log-file=
+-log-file=/data/log/drainer.log

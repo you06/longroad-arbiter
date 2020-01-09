@@ -393,6 +393,8 @@ binlog:
     create: true
     replicas: 3
     image: hub.pingcap.net/pingcap/tidb-binlog:v3.0.8
+    baseImage: hub.pingcap.net/pingcap/tidb-binlog
+    clusterVersion: v3.0.8
     imagePullPolicy: IfNotPresent
     logLevel: debug
     timezone: UTC
@@ -412,7 +414,8 @@ binlog:
   drainer:
     create: false
     image: hub.pingcap.net/pingcap/tidb-binlog:v3.0.8
-    # image: hub.pingcap.net/longroad/drainer:v4
+    baseImage: hub.pingcap.net/pingcap/tidb-binlog
+    clusterVersion: v3.0.8
     imagePullPolicy: IfNotPresent
     logLevel: debug
     timezone: UTC
@@ -467,6 +470,8 @@ binlog:
   drainerKafka:
     create: true
     image: hub.pingcap.net/pingcap/tidb-binlog:v3.0.8
+    baseImage: hub.pingcap.net/pingcap/tidb-binlog
+    clusterVersion: v3.0.8
     imagePullPolicy: IfNotPresent
     logLevel: debug
     timezone: UTC

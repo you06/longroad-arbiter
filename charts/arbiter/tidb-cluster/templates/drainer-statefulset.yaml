@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: drainer
-        image: {{ .Values.binlog.drainer.image }}
+        image: {{ .Values.binlog.drainer.baseImage }}:{{ .Values.binlog.drainer.clusterVersion }}
         imagePullPolicy: {{ .Values.binlog.drainer.imagePullPolicy | default "IfNotPresent" }}
         command:
         - /bin/sh

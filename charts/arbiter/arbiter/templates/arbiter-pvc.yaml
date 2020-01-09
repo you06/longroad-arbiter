@@ -1,0 +1,17 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "arbiter.name" . }}-arbiter
+  labels:
+    app.kubernetes.io/name: arbiter
+    app.kubernetes.io/managed-by: tidb-operator
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: arbiter
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: {{ .Values.arbiter.storage }}
+  storageClassName: {{ .Values.arbiter.storageClassName }}

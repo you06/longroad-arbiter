@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: pump
-        image: {{ .Values.binlog.pump.image }}
+        image: {{ .Values.binlog.pump.baseImage }}:{{ .Values.binlog.pump.clusterVersion }}
         imagePullPolicy: {{ .Values.binlog.pump.imagePullPolicy | default "IfNotPresent"}}
         command:
         - /bin/sh
