@@ -2,7 +2,10 @@ const path = require('path')
 const { exec, sleep, exists } = require('./util')
 const { TEMP_DIR } = require('./const')
 
-module.exports.deployArbiterLongroad = async function(ns) {
+module.exports.deployArbiterLongroad = async function({
+  namespace: ns,
+  storageClass
+}) {
   const tempDir = path.join(__dirname, TEMP_DIR)
   const arbiterChartsDir = path.join(__dirname, 'charts/arbiter')
   const arbiterTempDirChartsDir = path.join(tempDir, `${ns}-arbiter`)
@@ -17,14 +20,18 @@ module.exports.deployArbiterLongroad = async function(ns) {
   await exec(`sed -i 's/{namespace}/${ns}/g' ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/source-values.yaml')}`)
   await exec(`sed -i 's/{namespace}/${ns}/g' ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/target-values.yaml')}`)
   await exec(`sed -i 's/{namespace}/${ns}/g' ${path.join(arbiterTempDirChartsDir, 'arbiter/values.yaml')}`)
+  // replace storage class
+  await exec(`sed -i 's/{storage-class}/${storageClass}/g' ${path.join(arbiterTempDirChartsDir, 'kafka/values.yaml')}`)
+  await exec(`sed -i 's/{storage-class}/${storageClass}/g' ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/source-values.yaml')}`)
+  await exec(`sed -i 's/{storage-class}/${storageClass}/g' ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/target-values.yaml')}`)
 
   // start kafka
   await exec(`helm install --namespace ${ns} --name ${ns}-kafka ${path.join(arbiterTempDirChartsDir, 'kafka')}/`)
   // start TiDB cluster
   await exec(`ln -sf ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/source-values.yaml')} ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/values.yaml')}`)
-  await exec(`helm install --namespace ${ns} --name binlog-test-19-sourcedb ${path.join(arbiterTempDirChartsDir, 'tidb-cluster')}/`)
+  await exec(`helm install --namespace ${ns} --name ${ns}-sourcedb ${path.join(arbiterTempDirChartsDir, 'tidb-cluster')}/`)
   await exec(`ln -sf ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/target-values.yaml')} ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/values.yaml')}`)
-  await exec(`helm install --namespace ${ns} --name binlog-test-19-targetdb ${path.join(arbiterTempDirChartsDir, 'tidb-cluster')}/`)
+  await exec(`helm install --namespace ${ns} --name ${ns}-targetdb ${path.join(arbiterTempDirChartsDir, 'tidb-cluster')}/`)
 
   // get topic and replace it
   const topic = await getTopic(ns)

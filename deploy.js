@@ -1,12 +1,10 @@
+const { getConfig } = require('./config')
 const { deployArbiterLongroad } = require('./arbiter')
 
 main()
 
 async function main() {
-  const {
-    namespace
-  } = parseArgs()
-  await deployArbiterLongroad(namespace)
+  await deployArbiterLongroad(getConfig(parseArgs()))
 }
 
 function parseArgs() {
@@ -15,6 +13,7 @@ function parseArgs() {
   for (const item of process.argv) {
     if (key !== '') {
       args[key] = item
+      key = ''
       continue
     }
     if (item.startsWith('-')) {

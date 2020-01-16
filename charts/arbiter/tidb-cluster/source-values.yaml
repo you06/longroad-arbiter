@@ -67,7 +67,7 @@ pd:
   # different classes might map to quality-of-service levels, or to backup policies,
   # or to arbitrary policies determined by the cluster administrators.
   # refer to https://kubernetes.io/docs/concepts/storage/storage-classes
-  storageClassName: shared-nvme-disks
+  storageClassName: {storage-class}
 
   # Image pull policy.
   imagePullPolicy: IfNotPresent
@@ -210,7 +210,7 @@ tikv:
   # different classes might map to quality-of-service levels, or to backup policies,
   # or to arbitrary policies determined by the cluster administrators.
   # refer to https://kubernetes.io/docs/concepts/storage/storage-classes
-  storageClassName: shared-nvme-disks
+  storageClassName: {storage-class}
 
   # Image pull policy.
   imagePullPolicy: IfNotPresent
@@ -335,7 +335,7 @@ monitor:
   # If you set rbac.create to true, you should leave this empty.
   # serviceAccount:
   persistent: false
-  storageClassName: shared-nvme-disks
+  storageClassName: {storage-class}
   storage: 10Gi
   grafana:
     create: true
@@ -402,7 +402,7 @@ binlog:
     # different classes might map to quality-of-service levels, or to backup policies,
     # or to arbitrary policies determined by the cluster administrators.
     # refer to https://kubernetes.io/docs/concepts/storage/storage-classes
-    storageClassName: shared-nvme-disks
+    storageClassName: {storage-class}
     storage: 20Gi
     syncLog: true
     # a integer value to control expiry date of the binlog data, indicates for how long (in days) the binlog data would be stored.
@@ -423,7 +423,7 @@ binlog:
     # different classes might map to quality-of-service levels, or to backup policies,
     # or to arbitrary policies determined by the cluster administrators.
     # refer to https://kubernetes.io/docs/concepts/storage/storage-classes
-    storageClassName: shared-nvme-disks
+    storageClassName: {storage-class}
     storage: 10Gi
     # the number of the concurrency of the downstream for synchronization. The bigger the value,
     # the better throughput performance of the concurrency (16 by default)
@@ -479,7 +479,7 @@ binlog:
     # different classes might map to quality-of-service levels, or to backup policies,
     # or to arbitrary policies determined by the cluster administrators.
     # refer to https://kubernetes.io/docs/concepts/storage/storage-classes
-    storageClassName: shared-nvme-disks
+    storageClassName: {storage-class}
     storage: 10Gi
     # the number of the concurrency of the downstream for synchronization. The bigger the value,
     # the better throughput performance of the concurrency (16 by default)
@@ -516,7 +516,7 @@ scheduledBackup:
   # different classes might map to quality-of-service levels, or to backup policies,
   # or to arbitrary policies determined by the cluster administrators.
   # refer to https://kubernetes.io/docs/concepts/storage/storage-classes
-  storageClassName: shared-nvme-disks
+  storageClassName: {storage-class}
   storage: 100Gi
   # https://kubernetes.io/docs/tasks/job/automated-tasks-with-cron-jobs/#schedule
   schedule: "0 0 * * *"
