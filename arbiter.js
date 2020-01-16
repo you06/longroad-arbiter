@@ -22,6 +22,7 @@ module.exports.deployArbiterLongroad = async function({
   await exec(`sed -i 's/{namespace}/${ns}/g' ${path.join(arbiterTempDirChartsDir, 'arbiter/values.yaml')}`)
   // replace storage class
   await exec(`sed -i 's/{storage-class}/${storageClass}/g' ${path.join(arbiterTempDirChartsDir, 'kafka/values.yaml')}`)
+  await exec(`sed -i 's/{storage-class}/${storageClass}/g' ${path.join(arbiterTempDirChartsDir, 'arbiter/values.yaml')}`)
   await exec(`sed -i 's/{storage-class}/${storageClass}/g' ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/source-values.yaml')}`)
   await exec(`sed -i 's/{storage-class}/${storageClass}/g' ${path.join(arbiterTempDirChartsDir, 'tidb-cluster/target-values.yaml')}`)
 

@@ -61,7 +61,7 @@ pd:
     location-labels = ["region", "zone", "rack", "host"]
 
   replicas: 3
-  image: hub.pingcap.net/pingcap/pd:v3.0.8
+  image: hub.pingcap.net/pingcap/pd:v3.0.9
   logLevel: info
   # storageClassName is a StorageClass provides a way for administrators to describe the "classes" of storage they offer.
   # different classes might map to quality-of-service levels, or to backup policies,
@@ -204,7 +204,7 @@ tikv:
   # # capacity = "1GB"
 
   replicas: 3
-  image: hub.pingcap.net/pingcap/tikv:v3.0.8
+  image: hub.pingcap.net/pingcap/tikv:v3.0.9
   logLevel: info
   # storageClassName is a StorageClass provides a way for administrators to describe the "classes" of storage they offer.
   # different classes might map to quality-of-service levels, or to backup policies,
@@ -264,7 +264,7 @@ tidb:
   # initSql is the SQL statements executed after the TiDB cluster is bootstrapped.
   # initSql: |-
   #   create database app;
-  image: hub.pingcap.net/pingcap/tidb:v3.0.8
+  image: hub.pingcap.net/pingcap/tidb:v3.0.9
   # Image pull policy.
   imagePullPolicy: IfNotPresent
 
@@ -389,7 +389,7 @@ binlog:
   pump:
     create: false
     replicas: 3
-    image: pingcap/tidb-binlog:v3.0.8
+    image: pingcap/tidb-binlog:v3.0.9
     imagePullPolicy: IfNotPresent
     logLevel: info
     # storageClassName is a StorageClass provides a way for administrators to describe the "classes" of storage they offer.
@@ -407,7 +407,7 @@ binlog:
 
   drainer:
     create: false
-    image: pingcap/tidb-binlog:v3.0.8
+    image: pingcap/tidb-binlog:v3.0.9
     imagePullPolicy: IfNotPresent
     logLevel: info
     # storageClassName is a StorageClass provides a way for administrators to describe the "classes" of storage they offer.
@@ -452,7 +452,7 @@ binlog:
       #
   drainerKafka:
     create: false
-    image: pingcap/tidb-binlog:v3.0.8
+    image: pingcap/tidb-binlog:v3.0.9
     imagePullPolicy: IfNotPresent
     logLevel: info
     # storageClassName is a StorageClass provides a way for administrators to describe the "classes" of storage they offer.

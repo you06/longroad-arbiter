@@ -2,7 +2,7 @@ timezone: UTC
 
 arbiter:
   name: arbiter
-  image: hub.pingcap.net/pingcap/tidb-binlog:v3.0.8
+  image: hub.pingcap.net/pingcap/tidb-binlog:v3.0.9
 
   config:
     # upstream config
@@ -15,5 +15,5 @@ arbiter:
     dbport: 4000
     dbuser: root
     dbpassword: ""
-  storageClassName: shared-nvme-disks
+  storageClassName: {storage-class}
   storage: 10Gi
