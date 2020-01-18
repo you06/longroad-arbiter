@@ -254,7 +254,7 @@ tidb:
     [log]
     level = "debug"
     [log.file]
-    filename = "/tidb.log"
+    filename = "/extra-volume/tidb.log"
     [binlog]
     enable = true
 
@@ -295,7 +295,8 @@ tidb:
   #   operator: Equal
   #   value: tidb
   #   effect: "NoSchedule"
-  annotations: {}
+  annotations:
+    extra-volume: "true"
   maxFailoverCount: 3
   service:
     type: NodePort

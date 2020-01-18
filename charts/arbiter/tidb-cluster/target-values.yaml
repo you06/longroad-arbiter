@@ -254,7 +254,7 @@ tidb:
     [log]
     level = "debug"
     [log.file]
-    filename = "/tidb.log"
+    filename = "/extra-volume/tidb.log"
 
   replicas: 2
   # The secret name of root password, you can create secret with following command:
@@ -293,7 +293,8 @@ tidb:
   #   operator: Equal
   #   value: tidb
   #   effect: "NoSchedule"
-  annotations: {}
+  annotations:
+    extra-volume: "true"
   maxFailoverCount: 3
   service:
     type: NodePort
