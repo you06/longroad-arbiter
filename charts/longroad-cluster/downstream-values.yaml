@@ -77,7 +77,7 @@ pd:
       cpu: 8000m
       memory: 8Gi
     requests:
-      cpu: 1000m
+      cpu: 200m
       memory: 2Gi
       storage: 1Gi
 
@@ -221,7 +221,7 @@ tikv:
       memory: 32Gi
       storage: 300Gi
     requests:
-      cpu: 2000m
+      cpu: 200m
       memory: 4Gi
       storage: 10Gi
 
@@ -272,9 +272,9 @@ tidb:
     limits:
       cpu: 16000m
       memory: 16Gi
-    requests:
-      cpu: 6000m
-      memory: 8Gi
+    requests: 
+      cpu: 200m
+      memory: 2Gi
 
 
   ## affinity defines tikv scheduling rules,affinity default settings is empty.
