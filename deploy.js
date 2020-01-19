@@ -1,10 +1,25 @@
 const { getConfig } = require('./config')
+const { deployVeryLongroad } = require('./longroad-cluster')
 const { deployArbiterLongroad } = require('./arbiter')
 
 main()
 
 async function main() {
-  await deployArbiterLongroad(getConfig(parseArgs()))
+  const cfg = getConfig(parseArgs())
+  if (cfg.namespace === '') {
+    console.log('empty namespace')
+    return
+  }
+  switch (cfg.workload) {
+    case 'longroad-cluster':
+      await deployVeryLongroad(cfg)
+      break
+    case 'arbiter':
+      await deployArbiterLongroad(cfg)
+      break
+    default:
+      console.log('Unsupported workload')
+  }
 }
 
 function parseArgs() {
