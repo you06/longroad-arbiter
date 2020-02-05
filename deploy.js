@@ -1,4 +1,5 @@
 const { getConfig } = require('./config')
+const { deployTiDBCluster } = require('./tidb-cluster')
 const { deployVeryLongroad } = require('./longroad-cluster')
 const { deployArbiterLongroad } = require('./arbiter')
 
@@ -11,6 +12,9 @@ async function main() {
     return
   }
   switch (cfg.workload) {
+    case 'tidb-cluster':
+      await deployTiDBCluster(cfg)
+      break
     case 'longroad-cluster':
       await deployVeryLongroad(cfg)
       break
